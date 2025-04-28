@@ -29,7 +29,7 @@ public final class ArchiveActivity extends AppCompatActivity {
 
         reload();
     }
-    
+
     private void reload() {
         var h = OrderRepository.get().history();
         sel.setAdapter(new ArrayAdapter<>(this,
