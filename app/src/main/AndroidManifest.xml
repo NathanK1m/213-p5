@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.p5_213">
 
     <application
         android:allowBackup="true"
@@ -12,17 +13,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.P5213"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.P5213">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
+        <activity
+            android:name=".ui.StartActivity"
+            android:exported="true">
+            <intent-filter>
+                <action   android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <!--  other app screens (no intent-filter, export not needed)  -->
+        <activity android:name=".ui.MenuActivity"      />
+        <activity android:name=".ui.BurgerActivity"    />
+        <activity android:name=".ui.SandwichActivity"  />
+        <activity android:name=".ui.SideActivity"      />
+        <activity android:name=".ui.BeverageActivity"  />
+        <activity android:name=".ui.ComboActivity"     />
+        <activity android:name=".ui.CartActivity"      />
+        <activity android:name=".ui.ArchiveActivity"   />
+
+        <!--  optional: keep the template MainActivity for preview only  -->
+        <!--  Remove the LAUNCHER filter so it is never started          -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            tools:node="remove" />
+    </application>
 </manifest>
