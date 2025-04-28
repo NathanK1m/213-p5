@@ -1,27 +1,68 @@
 package com.example.p5_213.ui;
+
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.widget.*;
-import androidx.appcompat.app.AppCompatActivity; import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.p5_213.R;
 import com.example.p5_213.data.OrderRepository;
 import com.example.p5_213.model.*;
-import com.example.p5_213.R;
+
 public final class BeverageActivity extends AppCompatActivity {
-    private Spinner size,qnt; private TextView price; private FlavorAdapter ad;
-    public void onCreate(Bundle s){ super.onCreate(s);
+
+    private Spinner spFlavor, spSize, spQty;
+    private TextView tvPrice;
+
+    @Override protected void onCreate(Bundle s) {
+        super.onCreate(s);
         setContentView(R.layout.activity_beverage);
-        size=findViewById(R.id.spnSize); qnt=findViewById(R.id.spnQty); price=findViewById(R.id.tvPrice);
-        RecyclerView rv=findViewById(R.id.rvFlavors); ad=new FlavorAdapter(f->update()); rv.setAdapter(ad);
-        AdapterView.OnItemSelectedListener sel=new Sel(); size.setOnItemSelectedListener(sel); qnt.setOnItemSelectedListener(sel); update();
-        findViewById(R.id.btnAdd).setOnClickListener(v->{ if(ad.selected()==null){Toast.makeText(this,"Pick flavour",Toast.LENGTH_SHORT).show();return;}
-            OrderRepository.get().current().addItem(build()); Toast.makeText(this,"Added",Toast.LENGTH_SHORT).show();});
-        findViewById(R.id.btnMain).setOnClickListener(v->finish());
+
+        spFlavor = findViewById(R.id.spFlavor);
+        spSize   = findViewById(R.id.spSize);
+        spQty    = findViewById(R.id.spQty);
+        tvPrice  = findViewById(R.id.tvPrice);
+
+        spFlavor.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Flavor.values()));
+        spSize  .setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Size.values()));
+        spQty   .setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                new Integer[]{1,2,3,4,5}));
+
+        AdapterView.OnItemSelectedListener l = new SimpleSel(){ public void onItemSelected(){updatePrice();}};
+        spFlavor.setOnItemSelectedListener(l); spSize.setOnItemSelectedListener(l); spQty.setOnItemSelectedListener(l);
+
+        findViewById(R.id.btnAdd).setOnClickListener(v -> addToOrder());
+        findViewById(R.id.btnMain).setOnClickListener(v -> finish());
+
+        updatePrice();
     }
-    private Beverage build(){
-        Size sz=Size.values()[size.getSelectedItemPosition()];
-        int q=Integer.parseInt(qnt.getSelectedItem().toString());
-        return new Beverage(sz,ad.selected(),q);
+
+    private void addToOrder() {
+        try {
+            OrderRepository.get().current().addItem(buildBeverage());
+            Toast.makeText(this, R.string.added_to_order, Toast.LENGTH_SHORT).show();
+        } catch (IllegalStateException ex) {
+            warn("Choose flavor/size");
+        }
     }
-    private void update(){ if(ad.selected()!=null) price.setText(String.format("$%.2f",build().price())); else price.setText("$0.00"); }
-    private final class Sel implements AdapterView.OnItemSelectedListener{
-        public void onNothingSelected(AdapterView<?> p){} public void onItemSelected(AdapterView<?> a,View v,int i,long id){update();}}
+
+    private void updatePrice() {
+        try { tvPrice.setText(String.format("$%.2f", buildBeverage().price())); }
+        catch (Exception ignore){ tvPrice.setText("$0.00"); }
+    }
+
+    private Beverage buildBeverage() {
+        Flavor  flavor = (Flavor) spFlavor.getSelectedItem();
+        Size    size   = (Size)   spSize  .getSelectedItem();
+        Integer qty    = (Integer)spQty   .getSelectedItem();
+        if (flavor==null || size==null || qty==null) throw new IllegalStateException();
+        return new Beverage(size, flavor, qty);
+    }
+
+    private void warn(String m){ new AlertDialog.Builder(this)
+            .setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
+
+    private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
+        public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
+        public final void onItemSelected(AdapterView<?> p, View v, int i, long l){onItemSelected();}
+    }
 }
