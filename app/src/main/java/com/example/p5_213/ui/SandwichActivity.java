@@ -33,7 +33,7 @@ public final class SandwichActivity extends AppCompatActivity {
         cbAvo = findViewById(R.id.cbAvocado);
         cbChe = findViewById(R.id.cbCheese);
 
-        tvPrice = findViewById(R.id.tvPrice);
+        tvPrice = findViewById(R.id.tvTot);
 
         spQty.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
@@ -46,7 +46,7 @@ public final class SandwichActivity extends AppCompatActivity {
         rgProtein.setOnCheckedChangeListener((g,i)->updatePrice());
         spQty    .setOnItemSelectedListener(new SimpleSel(){public void onItemSelected(){updatePrice();}});
 
-        findViewById(R.id.btnAdd).setOnClickListener(v -> addToOrder());
+        findViewById(R.id.btnPlace).setOnClickListener(v -> addToOrder());
         findViewById(R.id.btnCombo).setOnClickListener(v -> {
             try { startActivity(ComboActivity.intent(this, buildSandwich())); }
             catch (IllegalStateException ex){ warn("Choose bread / protein."); }

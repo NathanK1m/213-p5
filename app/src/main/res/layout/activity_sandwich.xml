@@ -153,7 +153,7 @@
                 android:layout_height="75dp" />
 
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvTot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Current Price: "
@@ -166,7 +166,7 @@
                 android:text="Make it a combo" />
 
             <Button
-                android:id="@+id/btnAdd"
+                android:id="@+id/btnPlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Place order" />

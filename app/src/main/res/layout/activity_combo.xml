@@ -51,7 +51,7 @@
                 android:layout_height="75dp" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/tvSub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Choose Side"
@@ -63,7 +63,7 @@
                 android:layout_height="75dp" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvTax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Quantity"
@@ -75,14 +75,14 @@
                 android:layout_height="75dp" />
 
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvTot"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:text="Current Price: "
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/btnAdd"
+                android:id="@+id/btnPlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add to order" />

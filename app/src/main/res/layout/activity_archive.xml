@@ -46,7 +46,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/btnRemove"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cancel Order" />

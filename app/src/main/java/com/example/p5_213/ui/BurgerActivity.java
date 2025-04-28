@@ -33,7 +33,7 @@ public final class BurgerActivity extends AppCompatActivity {
         cbOni = findViewById(R.id.cbOnion);
         cbAvo   = findViewById(R.id.cbAvocado);
         cbChe   = findViewById(R.id.cbCheese);
-        tvPrice = findViewById(R.id.tvPrice);
+        tvPrice = findViewById(R.id.tvTot);
 
         /* quantity 1-5 */
         spQty.setAdapter(new ArrayAdapter<>(this,
@@ -50,7 +50,7 @@ public final class BurgerActivity extends AppCompatActivity {
         spQty  .setOnItemSelectedListener(new SimpleSel(){ public void onItemSelected(){updatePrice();}});
 
         /* buttons */
-        findViewById(R.id.btnAdd).setOnClickListener(v -> addToCart());
+        findViewById(R.id.btnPlace).setOnClickListener(v -> addToCart());
         findViewById(R.id.btnCombo).setOnClickListener(v -> {
             try { startActivity(ComboActivity.intent(this, buildBurger())); }
             catch (IllegalStateException ex){ warn("Choose bread/patty."); }

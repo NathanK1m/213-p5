@@ -19,9 +19,9 @@ public final class ComboActivity extends AppCompatActivity {
         base=(Sandwich)getIntent().getSerializableExtra(EXTRA);
         ((TextView)findViewById(R.id.tvBase)).setText(base.toString());
         side=findViewById(R.id.spnSide); drink=findViewById(R.id.spnDrink); qty=findViewById(R.id.spnQty);
-        price=findViewById(R.id.tvPrice); imgSide=findViewById(R.id.imgSide); imgDrink=findViewById(R.id.imgDrink);
+        price=findViewById(R.id.tvTot); imgSide=findViewById(R.id.imgSide); imgDrink=findViewById(R.id.imgDrink);
         AdapterView.OnItemSelectedListener l=new Sel(); side.setOnItemSelectedListener(l); drink.setOnItemSelectedListener(l); qty.setOnItemSelectedListener(l); update();
-        findViewById(R.id.btnAdd).setOnClickListener(v->{ if(check()){ OrderRepository.get().current().addItem(build()); Toast.makeText(this,"Added",Toast.LENGTH_SHORT).show();}});
+        findViewById(R.id.btnPlace).setOnClickListener(v->{ if(check()){ OrderRepository.get().current().addItem(build()); Toast.makeText(this,"Added",Toast.LENGTH_SHORT).show();}});
         findViewById(R.id.btnMain).setOnClickListener(v->finish());
     }
     private boolean check(){ if(side.getSelectedItemPosition()<0||drink.getSelectedItemPosition()<0){Toast.makeText(this,"Pick side & drink",Toast.LENGTH_SHORT).show();return false;}return true;}

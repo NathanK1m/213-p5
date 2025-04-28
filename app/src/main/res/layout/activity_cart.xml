@@ -28,38 +28,39 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             <ListView
+                android:id="@+id/lvCart"
                 android:layout_width="match_parent"
                 android:layout_height="522dp" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/tvSub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Subtotal: "
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvTax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sales Tax: "
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvTot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Total: "
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/btnRemove"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Remove Selected Item" />
 
             <Button
-                android:id="@+id/btnAdd"
+                android:id="@+id/btnPlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Place Order" />

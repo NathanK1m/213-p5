@@ -25,7 +25,7 @@ public final class BeverageActivity extends AppCompatActivity {
         rvFlavor = findViewById(R.id.rvFlavor);
         spSize   = findViewById(R.id.spSize);
         spQty    = findViewById(R.id.spQty);
-        tvPrice  = findViewById(R.id.tvPrice);
+        tvPrice  = findViewById(R.id.tvTot);
 
         /* RecyclerView: 3-column grid with pictures */
         adapter = new FlavorAdapter(f -> updatePrice());
@@ -40,7 +40,7 @@ public final class BeverageActivity extends AppCompatActivity {
         AdapterView.OnItemSelectedListener l = new SimpleSel(){public void onItemSelected(){updatePrice();}};
         spSize.setOnItemSelectedListener(l); spQty.setOnItemSelectedListener(l);
 
-        findViewById(R.id.btnAdd).setOnClickListener(v -> addToOrder());
+        findViewById(R.id.btnPlace).setOnClickListener(v -> addToOrder());
         findViewById(R.id.btnMain).setOnClickListener(
                 v -> startActivity(new Intent(this, MenuActivity.class)));
 

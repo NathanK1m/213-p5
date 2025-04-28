@@ -21,7 +21,7 @@ public final class SideActivity extends AppCompatActivity {
         spType = findViewById(R.id.spType);
         spSize = findViewById(R.id.spSize);
         spQty  = findViewById(R.id.spQty);
-        tvPrice= findViewById(R.id.tvPrice);
+        tvPrice= findViewById(R.id.tvTot);
 
         spType.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, SideType.values()));
         spSize.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Size.values()));
@@ -31,7 +31,7 @@ public final class SideActivity extends AppCompatActivity {
         AdapterView.OnItemSelectedListener l = new SimpleSel(){ public void onItemSelected(){updatePrice();}};
         spType.setOnItemSelectedListener(l); spSize.setOnItemSelectedListener(l); spQty.setOnItemSelectedListener(l);
 
-        findViewById(R.id.btnAdd).setOnClickListener(v -> addToOrder());
+        findViewById(R.id.btnPlace).setOnClickListener(v -> addToOrder());
         findViewById(R.id.btnMain).setOnClickListener(v -> finish());
 
         updatePrice();
