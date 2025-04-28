@@ -22,8 +22,10 @@ public final class BurgerActivity extends AppCompatActivity {
         super.onCreate(s);
         setContentView(R.layout.activity_burger);
 
-        rgBread = findViewById(R.id.rgBread);
-        rgPatty = findViewById(R.id.rgPatty);
+        /* radio-groups (3 breads, 2 patties) */
+        rgBread = findViewById(R.id.rgBread);   // Brioche / Wheat / Pretzel
+        rgPatty = findViewById(R.id.rgPatty);   // Single / Double
+
         spQty   = findViewById(R.id.spQty);
 
         cbLet   = findViewById(R.id.cbLettuce);
@@ -31,40 +33,41 @@ public final class BurgerActivity extends AppCompatActivity {
         cbOnion = findViewById(R.id.cbOnion);
         cbAvo   = findViewById(R.id.cbAvocado);
         cbChe   = findViewById(R.id.cbCheese);
-
         tvPrice = findViewById(R.id.tvPrice);
 
+        /* quantity 1-5 */
         spQty.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
+                android.R.layout.simple_spinner_item,
+                new Integer[]{1,2,3,4,5}));
 
+        /* live-price listeners */
         View.OnClickListener u = v -> updatePrice();
-        cbLet.setOnClickListener(u);  cbTom.setOnClickListener(u);
-        cbOnion.setOnClickListener(u);cbAvo.setOnClickListener(u); cbChe.setOnClickListener(u);
+        cbLet.setOnClickListener(u);  cbTom.setOnClickListener(u);  cbOnion.setOnClickListener(u);
+        cbAvo.setOnClickListener(u);  cbChe.setOnClickListener(u);
 
         rgBread.setOnCheckedChangeListener((g,i)->updatePrice());
         rgPatty.setOnCheckedChangeListener((g,i)->updatePrice());
         spQty  .setOnItemSelectedListener(new SimpleSel(){ public void onItemSelected(){updatePrice();}});
 
-        /* — Buttons — */
+        /* buttons */
         findViewById(R.id.btnAdd).setOnClickListener(v -> addToCart());
-
-        /* NEW: “Make Combo” button */
         findViewById(R.id.btnCombo).setOnClickListener(v -> {
             try { startActivity(ComboActivity.intent(this, buildBurger())); }
-            catch (IllegalStateException ex){ warn("Choose bread/patty"); }
+            catch (IllegalStateException ex){ warn("Choose bread/patty."); }
         });
-
         findViewById(R.id.btnMain).setOnClickListener(v -> finish());
 
         updatePrice();
     }
+
+    /* price / build helpers ------------------------------------------------ */
 
     private void addToCart() {
         try {
             OrderRepository.get().current().addItem(buildBurger());
             Toast.makeText(this, R.string.added_to_order, Toast.LENGTH_SHORT).show();
         } catch (IllegalStateException ex) {
-            warn("Choose bread/patty");
+            warn("Choose bread/patty.");
         }
     }
 
@@ -84,11 +87,11 @@ public final class BurgerActivity extends AppCompatActivity {
                 .getText().toString().equalsIgnoreCase("Double");
 
         ArrayList<AddOns> add = new ArrayList<>();
-        if (cbLet.isChecked()) add.add(AddOns.LETTUCE);
-        if (cbTom.isChecked()) add.add(AddOns.TOMATOES);
-        if (cbOnion.isChecked())add.add(AddOns.ONIONS);
-        if (cbAvo.isChecked())  add.add(AddOns.AVOCADO);
-        if (cbChe.isChecked())  add.add(AddOns.CHEESE);
+        if (cbLet.isChecked())   add.add(AddOns.LETTUCE);
+        if (cbTom.isChecked())   add.add(AddOns.TOMATOES);
+        if (cbOnion.isChecked()) add.add(AddOns.ONIONS);
+        if (cbAvo.isChecked())   add.add(AddOns.AVOCADO);
+        if (cbChe.isChecked())   add.add(AddOns.CHEESE);
 
         int q = Integer.parseInt(spQty.getSelectedItem().toString());
         return new Burger(bread, dbl, add, q);
@@ -97,8 +100,9 @@ public final class BurgerActivity extends AppCompatActivity {
     private void warn(String m){ new AlertDialog.Builder(this)
             .setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
+    /* tiny listener helper */
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
         public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
-        public final void onItemSelected(AdapterView<?> p, View v, int i, long l){onItemSelected();}
+        public final void onItemSelected(AdapterView<?> p, View v, int i, long l){ onItemSelected(); }
     }
 }

@@ -34,11 +34,11 @@
                 android:textSize="24sp" />
 
             <RadioGroup
+                android:id="@+id/rgPatty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:text="Single"
@@ -61,6 +61,7 @@
                 android:textSize="24sp" />
 
             <RadioGroup
+                android:id="@+id/rgBread"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -94,35 +95,35 @@
                 android:textSize="24sp" />
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/cbLettuce"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:text="Lettuce"
                 android:textSize="20sp" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/cbTomato"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:text="Tomatoes"
                 android:textSize="20sp" />
 
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/cbAvocado"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:text="Avocado"
                 android:textSize="20sp" />
 
             <CheckBox
-                android:id="@+id/checkBox4"
+                android:id="@+id/cbCheese"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:text="Cheese"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/spQty"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:text="Quantity"
@@ -134,19 +135,20 @@
                 android:layout_height="75dp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnCombo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Make it a combo" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="addToCart"
                 android:text="Place order" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btnMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Main Menu" />
