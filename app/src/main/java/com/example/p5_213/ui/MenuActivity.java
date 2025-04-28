@@ -11,7 +11,9 @@ public final class MenuActivity extends AppCompatActivity {
         link(R.id.btnSide,     SideActivity.class);
         link(R.id.btnDrink,    BeverageActivity.class);
         link(R.id.btnCart,     CartActivity.class);
-        link(R.id.btnHistory,  HistoryActivity.class);
+        link(R.id.btnHistory,  ArchiveActivity.class);
+
+        findViewById(R.id.btnStart).setOnClickListener(view -> startActivity(new Intent(this, StartActivity.class)));
     }
     private void link(int id, Class<?> c){
         findViewById(id).setOnClickListener(v -> startActivity(new Intent(this,c)));

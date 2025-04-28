@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/beverage_bt"
+        android:id="@+id/btnDrink"
         android:layout_width="175dp"
         android:layout_height="165dp"
         android:layout_marginTop="28dp"
@@ -14,10 +14,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sandwich_bt" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSandwich" />
 
     <Button
-        android:id="@+id/sandwich_bt"
+        android:id="@+id/btnSandwich"
         android:layout_width="175dp"
         android:layout_height="165dp"
         android:layout_marginTop="76dp"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/order_header" />
 
     <Button
-        android:id="@+id/burger_bt"
+        android:id="@+id/btnBurger"
         android:layout_width="175dp"
         android:layout_height="165dp"
         android:layout_marginTop="76dp"
@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/order_header" />
 
     <Button
-        android:id="@+id/sides_bt"
+        android:id="@+id/btnSide"
         android:layout_width="175dp"
         android:layout_height="165dp"
         android:layout_marginTop="28dp"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/burger_bt" />
+        app:layout_constraintTop_toBottomOf="@+id/btnBurger" />
 
     <TextView
         android:id="@+id/order_header"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/view_order_bt"
+        android:id="@+id/btnHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btnCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="84dp"
