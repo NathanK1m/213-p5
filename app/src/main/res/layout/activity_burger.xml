@@ -45,7 +45,6 @@
                     android:textSize="20sp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton4"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:text="Double"
@@ -66,21 +65,18 @@
                 android:layout_height="match_parent">
 
                 <RadioButton
-                    android:id="@+id/radioButton5"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:text="Brioche"
                     android:textSize="20sp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton6"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:text="Wheat"
                     android:textSize="20sp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton7"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:text="Pretzel"
