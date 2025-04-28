@@ -23,7 +23,7 @@ public final class BeverageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_beverage);
 
         rvFlavor = findViewById(R.id.rvFlavor);
-        spSize   = findViewById(R.id.spSize);
+        spSize   = findViewById(R.id.spType);
         spQty    = findViewById(R.id.spQty);
         tvPrice  = findViewById(R.id.tvPrice);
 
