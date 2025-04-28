@@ -15,7 +15,7 @@ public final class BurgerActivity extends AppCompatActivity {
 
     private RadioGroup rgBread, rgPatty;
     private Spinner    spQty;
-    private CheckBox   cbLet, cbTom, cbOnion, cbAvo, cbChe;
+    private CheckBox   cbLet, cbTom, cbOni, cbAvo, cbChe;
     private TextView   tvPrice;
 
     @Override protected void onCreate(Bundle s) {
@@ -30,7 +30,7 @@ public final class BurgerActivity extends AppCompatActivity {
 
         cbLet   = findViewById(R.id.cbLettuce);
         cbTom   = findViewById(R.id.cbTomato);
-        cbOnion = findViewById(R.id.cbOnion);
+        cbOni = findViewById(R.id.cbOnion);
         cbAvo   = findViewById(R.id.cbAvocado);
         cbChe   = findViewById(R.id.cbCheese);
         tvPrice = findViewById(R.id.tvPrice);
@@ -42,7 +42,7 @@ public final class BurgerActivity extends AppCompatActivity {
 
         /* live-price listeners */
         View.OnClickListener u = v -> updatePrice();
-        cbLet.setOnClickListener(u);  cbTom.setOnClickListener(u);  cbOnion.setOnClickListener(u);
+        cbLet.setOnClickListener(u);  cbTom.setOnClickListener(u);  cbOni.setOnClickListener(u);
         cbAvo.setOnClickListener(u);  cbChe.setOnClickListener(u);
 
         rgBread.setOnCheckedChangeListener((g,i)->updatePrice());
@@ -89,7 +89,7 @@ public final class BurgerActivity extends AppCompatActivity {
         ArrayList<AddOns> add = new ArrayList<>();
         if (cbLet.isChecked())   add.add(AddOns.LETTUCE);
         if (cbTom.isChecked())   add.add(AddOns.TOMATOES);
-        if (cbOnion.isChecked()) add.add(AddOns.ONIONS);
+        if (cbOni.isChecked()) add.add(AddOns.ONIONS);
         if (cbAvo.isChecked())   add.add(AddOns.AVOCADO);
         if (cbChe.isChecked())   add.add(AddOns.CHEESE);
 
