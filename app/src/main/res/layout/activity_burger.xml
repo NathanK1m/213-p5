@@ -109,6 +109,13 @@
                 android:textSize="20sp" />
 
             <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="Onions"
+                android:textSize="20sp" />
+
+            <CheckBox
                 android:id="@+id/cbAvocado"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
