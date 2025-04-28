@@ -6,17 +6,16 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.p5_213.R;
 import com.example.p5_213.data.OrderRepository;
-import com.example.p5_213.model.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import com.example.p5_213.model.MenuItem;
+import com.example.p5_213.model.Order;
 
 public final class ArchiveActivity extends AppCompatActivity {
 
-    private Spinner sel; private ListView lv; private TextView tot;
+    private Spinner   sel;
+    private ListView  lv;
+    private TextView  tot;
 
-    @Override public void onCreate(Bundle s){
+    @Override public void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_archive);
 
@@ -26,55 +25,40 @@ public final class ArchiveActivity extends AppCompatActivity {
 
         sel.setOnItemSelectedListener(new Sel());
         findViewById(R.id.btnCancel).setOnClickListener(v -> cancel());
-        findViewById(R.id.btnExport).setOnClickListener(v -> export());
-        findViewById(R.id.btnMain)  .setOnClickListener(v -> finish());
+        findViewById(R.id.btnMain).setOnClickListener(v -> finish());
 
         reload();
     }
-
-    private void reload(){
+    
+    private void reload() {
         var h = OrderRepository.get().history();
-        sel.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,
+        sel.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
                 h.stream().map(o -> "Order #"+o.getNumber()).toList()));
-        if(!h.isEmpty()) sel.setSelection(0);
+        if (!h.isEmpty()) sel.setSelection(0);
         display();
     }
 
-    private void display(){
-        int idx = sel.getSelectedItemPosition(); if(idx<0) return;
+    private void display() {
+        int idx = sel.getSelectedItemPosition();       // nothing chosen → skip
+        if (idx < 0) return;
         Order o = OrderRepository.get().history().get(idx);
-        lv.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
+        lv.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1,
                 o.getItems().stream().map(MenuItem::toString).toList()));
-        tot.setText(String.format("$%.2f",o.getTotal()));
+        tot.setText(String.format("$%.2f", o.getTotal()));
     }
 
-
-    private void cancel(){
+    private void cancel() {
         int i = sel.getSelectedItemPosition();
-        if(i>=0){
+        if (i >= 0) {
             OrderRepository.get().history().remove(i);
             reload();
         }
     }
 
-    private void export(){
-        int idx = sel.getSelectedItemPosition(); if(idx<0) return;
-        Order o = OrderRepository.get().history().get(idx);
-        try {
-            File f = new File(getExternalFilesDir(null),
-                    "order_"+o.getNumber()+".txt");
-            try(PrintWriter pw = new PrintWriter(f)){
-                pw.print(o.toString());
-            }
-            Toast.makeText(this,"Saved: "+f.getAbsolutePath(),
-                    Toast.LENGTH_LONG).show();
-        } catch (IOException e){
-            Toast.makeText(this,"Export failed",Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private final class Sel implements AdapterView.OnItemSelectedListener{
-        public void onNothingSelected(AdapterView<?> p){}
-        public void onItemSelected(AdapterView<?> a, View v, int i, long id){ display(); }
+    private final class Sel implements AdapterView.OnItemSelectedListener {
+        public void onNothingSelected(AdapterView<?> p) {}
+        public void onItemSelected(AdapterView<?> a, View v, int i, long id) { display(); }
     }
 }

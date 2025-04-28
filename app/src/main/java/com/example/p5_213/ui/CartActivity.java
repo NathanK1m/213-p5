@@ -40,7 +40,7 @@ public final class CartActivity extends AppCompatActivity {
         lv.setOnItemLongClickListener((a,v,i,id) -> { remove(i); return true; });
 
         /* ---------- buttons ------------------------------------------- */
-        findViewById(R.id.btnRemove)
+        findViewById(R.id.btnCancel)
                 .setOnClickListener(v -> remove(selected));
 
         findViewById(R.id.btnPlace)

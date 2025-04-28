@@ -30,23 +30,24 @@
             android:textSize="24sp" />
 
         <Spinner
-            android:id="@+id/spinner7"
+            android:id="@+id/spnOrders"
             android:layout_width="match_parent"
             android:layout_height="75dp" />
 
         <ListView
+            android:id="@+id/lvDetails"
             android:layout_width="match_parent"
             android:layout_height="567dp" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/tvTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Total Amount: "
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/btnRemove"
+            android:id="@+id/btnCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cancel Order" />
