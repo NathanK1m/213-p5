@@ -46,7 +46,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/tvPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Total: "
@@ -59,13 +59,13 @@
                 android:text="Remove Selected Item" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Place Order" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Main menu" />
