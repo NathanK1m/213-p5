@@ -5,80 +5,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="430dp"
-        android:layout_height="862dp"
+    <LinearLayout
+        android:layout_width="416dp"
+        android:layout_height="858dp"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingTop="20dp"
-            android:paddingRight="10dp">
+            android:text="Choose a drink"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Choose a drink"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flavor"
+            android:textSize="24sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Flavor"
-                android:textSize="24sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFlavor"
+            android:layout_width="match_parent"
+            android:layout_height="386dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Size"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Size"
-                android:textSize="24sp" />
+        <Spinner
+            android:id="@+id/spSize"
+            android:layout_width="match_parent"
+            android:layout_height="75dp" />
 
-            <Spinner
-                android:id="@+id/spSize"
-                android:layout_width="match_parent"
-                android:layout_height="75dp" />
+        <TextView
+            android:id="@+id/tvSub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quantity"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/tvSub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Quantity"
-                android:textSize="24sp" />
+        <Spinner
+            android:id="@+id/spQty"
+            android:layout_width="match_parent"
+            android:layout_height="75dp" />
 
-            <Spinner
-                android:id="@+id/spQty"
-                android:layout_width="match_parent"
-                android:layout_height="75dp" />
+        <TextView
+            android:id="@+id/tvTot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Price: "
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/tvTot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Current Price: "
-                android:textSize="24sp" />
+        <Button
+            android:id="@+id/btnPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to order" />
 
-            <Button
-                android:id="@+id/btnPlace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add to order" />
+        <Button
+            android:id="@+id/btnMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Main menu" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/btnMain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Main menu" />
-        </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
