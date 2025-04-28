@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/beverage_bt"
+        android:layout_width="175dp"
+        android:layout_height="165dp"
+        android:text="Beverages"
+        tools:layout_editor_absoluteX="226dp"
+        tools:layout_editor_absoluteY="425dp" />
+
+    <Button
+        android:id="@+id/sandwich_bt"
+        android:layout_width="175dp"
+        android:layout_height="165dp"
+        android:text="Sandwiches"
+        tools:layout_editor_absoluteX="226dp"
+        tools:layout_editor_absoluteY="245dp" />
+
+    <Button
+        android:id="@+id/burger_bt"
+        android:layout_width="175dp"
+        android:layout_height="165dp"
+        android:text="Burgers"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="245dp" />
+
+    <Button
+        android:id="@+id/sides_bt"
+        android:layout_width="175dp"
+        android:layout_height="165dp"
+        android:text="Sides"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="425dp" />
+
+    <TextView
+        android:id="@+id/order_header"
+        android:layout_width="309dp"
+        android:layout_height="93dp"
+        android:gravity="center"
+        android:text="Choose your order"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="77dp" />
+
+    <Button
+        android:id="@+id/view_order_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View orders"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="638dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order list"
+        tools:layout_editor_absoluteX="264dp"
+        tools:layout_editor_absoluteY="638dp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="718dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
