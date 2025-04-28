@@ -46,6 +46,13 @@ public final class SandwichActivity extends AppCompatActivity {
         spBread.setOnItemSelectedListener(l); spProtein.setOnItemSelectedListener(l); spQty.setOnItemSelectedListener(l);
 
         findViewById(R.id.btnAdd).setOnClickListener(v -> addToOrder());
+
+        /* NEW: make-combo button */
+        findViewById(R.id.btnCombo).setOnClickListener(v -> {
+            try { startActivity(ComboActivity.intent(this, buildSandwich())); }
+            catch (IllegalStateException ex){ warn("Choose bread/protein"); }
+        });
+
         findViewById(R.id.btnMain).setOnClickListener(v -> finish());
 
         updatePrice();
@@ -71,14 +78,14 @@ public final class SandwichActivity extends AppCompatActivity {
         Integer qty     = (Integer) spQty    .getSelectedItem();
         if (bread==null || protein==null || qty==null) throw new IllegalStateException();
 
-        ArrayList<AddOns> addOns = new ArrayList<>();
-        if (cbLet.isChecked()) addOns.add(AddOns.LETTUCE);
-        if (cbTom.isChecked()) addOns.add(AddOns.TOMATOES);
-        if (cbOnion.isChecked()) addOns.add(AddOns.ONIONS);
-        if (cbAvo.isChecked()) addOns.add(AddOns.AVOCADO);
-        if (cbChe.isChecked()) addOns.add(AddOns.CHEESE);
+        ArrayList<AddOns> add = new ArrayList<>();
+        if (cbLet.isChecked()) add.add(AddOns.LETTUCE);
+        if (cbTom.isChecked()) add.add(AddOns.TOMATOES);
+        if (cbOnion.isChecked())add.add(AddOns.ONIONS);
+        if (cbAvo.isChecked())  add.add(AddOns.AVOCADO);
+        if (cbChe.isChecked())  add.add(AddOns.CHEESE);
 
-        return new Sandwich(bread, protein, addOns, qty);
+        return new Sandwich(bread, protein, add, qty);
     }
 
     private void warn(String m){ new AlertDialog.Builder(this)

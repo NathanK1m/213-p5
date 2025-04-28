@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public final class BurgerActivity extends AppCompatActivity {
 
     private RadioGroup rgBread, rgPatty;
-    private Spinner spQty;
-    private CheckBox cbLet, cbTom, cbOnion, cbAvo, cbChe;
-    private TextView tvPrice;
+    private Spinner    spQty;
+    private CheckBox   cbLet, cbTom, cbOnion, cbAvo, cbChe;
+    private TextView   tvPrice;
 
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
@@ -34,23 +34,27 @@ public final class BurgerActivity extends AppCompatActivity {
 
         tvPrice = findViewById(R.id.tvPrice);
 
-        // qty 1-5
         spQty.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
 
-        View.OnClickListener upd = v -> updatePrice();
-        cbLet.setOnClickListener(upd); cbTom.setOnClickListener(upd);
-        cbOnion.setOnClickListener(upd); cbAvo.setOnClickListener(upd); cbChe.setOnClickListener(upd);
+        View.OnClickListener u = v -> updatePrice();
+        cbLet.setOnClickListener(u);  cbTom.setOnClickListener(u);
+        cbOnion.setOnClickListener(u);cbAvo.setOnClickListener(u); cbChe.setOnClickListener(u);
+
         rgBread.setOnCheckedChangeListener((g,i)->updatePrice());
         rgPatty.setOnCheckedChangeListener((g,i)->updatePrice());
         spQty  .setOnItemSelectedListener(new SimpleSel(){ public void onItemSelected(){updatePrice();}});
 
+        /* — Buttons — */
         findViewById(R.id.btnAdd).setOnClickListener(v -> addToCart());
+
+        /* NEW: “Make Combo” button */
         findViewById(R.id.btnCombo).setOnClickListener(v -> {
             try { startActivity(ComboActivity.intent(this, buildBurger())); }
-            catch (IllegalStateException ex){ warn("You must have a complete burger"); }
+            catch (IllegalStateException ex){ warn("Choose bread/patty"); }
         });
-        findViewById(R.id.btnMain).setOnClickListener(v->finish());
+
+        findViewById(R.id.btnMain).setOnClickListener(v -> finish());
 
         updatePrice();
     }
@@ -60,7 +64,7 @@ public final class BurgerActivity extends AppCompatActivity {
             OrderRepository.get().current().addItem(buildBurger());
             Toast.makeText(this, R.string.added_to_order, Toast.LENGTH_SHORT).show();
         } catch (IllegalStateException ex) {
-            warn("You must have a complete burger");
+            warn("Choose bread/patty");
         }
     }
 
@@ -76,27 +80,25 @@ public final class BurgerActivity extends AppCompatActivity {
 
         Bread bread = Bread.valueOf(((RadioButton)findViewById(breadId))
                 .getText().toString().toUpperCase());
-        boolean isDouble = ((RadioButton)findViewById(pattyId))
+        boolean dbl = ((RadioButton)findViewById(pattyId))
                 .getText().toString().equalsIgnoreCase("Double");
 
-        ArrayList<AddOns> adds = new ArrayList<>();
-        if (cbLet.isChecked())   adds.add(AddOns.LETTUCE);
-        if (cbTom.isChecked())   adds.add(AddOns.TOMATOES);
-        if (cbOnion.isChecked()) adds.add(AddOns.ONIONS);
-        if (cbAvo.isChecked())   adds.add(AddOns.AVOCADO);
-        if (cbChe.isChecked())   adds.add(AddOns.CHEESE);
+        ArrayList<AddOns> add = new ArrayList<>();
+        if (cbLet.isChecked()) add.add(AddOns.LETTUCE);
+        if (cbTom.isChecked()) add.add(AddOns.TOMATOES);
+        if (cbOnion.isChecked())add.add(AddOns.ONIONS);
+        if (cbAvo.isChecked())  add.add(AddOns.AVOCADO);
+        if (cbChe.isChecked())  add.add(AddOns.CHEESE);
 
-        int qty = Integer.parseInt(spQty.getSelectedItem().toString());
-        return new Burger(bread, isDouble, adds, qty);
+        int q = Integer.parseInt(spQty.getSelectedItem().toString());
+        return new Burger(bread, dbl, add, q);
     }
 
-    private void warn(String msg){ new AlertDialog.Builder(this)
-            .setMessage(msg).setPositiveButton(android.R.string.ok,null).show(); }
+    private void warn(String m){ new AlertDialog.Builder(this)
+            .setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
-    /** helper */
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
-        public void onNothingSelected(AdapterView<?> p) {}
-        public abstract void onItemSelected();
-        public final void onItemSelected(AdapterView<?> p, View v, int i, long l){ onItemSelected(); }
+        public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
+        public final void onItemSelected(AdapterView<?> p, View v, int i, long l){onItemSelected();}
     }
 }
