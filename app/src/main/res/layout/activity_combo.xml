@@ -46,7 +46,7 @@
                 android:textSize="24sp" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/spSize"
                 android:layout_width="match_parent"
                 android:layout_height="75dp" />
 
@@ -70,25 +70,25 @@
                 android:textSize="24sp" />
 
             <Spinner
-                android:id="@+id/spinner4"
+                android:id="@+id/spQty"
                 android:layout_width="match_parent"
                 android:layout_height="75dp" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/tvPrice"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:text="Current Price: "
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add to order" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Main menu" />
