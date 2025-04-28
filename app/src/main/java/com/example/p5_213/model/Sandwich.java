@@ -6,8 +6,9 @@
 
 package com.example.p5_213.model;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Sandwich extends MenuItem {
+public class Sandwich extends MenuItem implements Serializable{
     protected Bread bread;
     protected Protein protein;
     protected ArrayList<AddOns> addOns;
