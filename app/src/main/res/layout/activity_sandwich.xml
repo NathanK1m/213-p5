@@ -154,7 +154,7 @@
                 android:textSize="24sp" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spQty"
                 android:layout_width="match_parent"
                 android:layout_height="75dp" />
 
