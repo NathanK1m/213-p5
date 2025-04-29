@@ -1,4 +1,3 @@
-package com.example.p5_213.ui;
 /**
  * Handles the checkout scene.
  * Displays the user's current order.
@@ -10,6 +9,7 @@ package com.example.p5_213.ui;
  * @author Nathan Kim
  */
 
+package com.example.p5_213.ui;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,6 @@ import com.example.p5_213.data.OrderRepository;
 import com.example.p5_213.model.MenuItem;
 import com.example.p5_213.model.Order;
 
-/** Shows the current order, lets the user remove a selected line-item or place the order. */
 public final class CartActivity extends AppCompatActivity {
     private ListView lv;
     private TextView tvSub;
@@ -28,6 +27,10 @@ public final class CartActivity extends AppCompatActivity {
     private TextView tvTot;
     private int selected = -1; // –1 means nothing is selected
 
+    /**
+     * Initializes cart activity and sets up listeners.
+     * @param s the saved instance state.
+     */
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_cart);
@@ -51,6 +54,9 @@ public final class CartActivity extends AppCompatActivity {
         refresh();
     }
 
+    /**
+     * Refreshes the cart screen and updates the displayed subtotal, tax, and total.
+     */
     private void refresh() {
         Order o = OrderRepository.get().current();
         lv.setAdapter(new ArrayAdapter<>(this,
@@ -69,13 +75,20 @@ public final class CartActivity extends AppCompatActivity {
         tvTot.setText(String.format("$%.2f", o.getTotal()));
     }
 
-    private void remove(int idx) {
-        if (idx < 0) { Toast.makeText(this, "Select an item first", Toast.LENGTH_SHORT).show(); return; }
-        OrderRepository.get().current().removeItem(idx);
+    /**
+     * Removes an item from the cart based on its index.
+     * @param index the index of the item to remove
+     */
+    private void remove(int index) {
+        if (index < 0) { Toast.makeText(this, "Select an item first", Toast.LENGTH_SHORT).show(); return; }
+        OrderRepository.get().current().removeItem(index);
         selected = -1;
         refresh();
     }
 
+    /**
+     * Places the current order.
+     */
     private void place() {
         OrderRepository repo = OrderRepository.get();
         if (repo.current().getItems().isEmpty()) {

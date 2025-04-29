@@ -23,8 +23,8 @@ public final class ArchiveActivity extends AppCompatActivity {
     private TextView tot;
 
     /**
-     * Initializes archived activity  and sets up listeners
-     * @param s the saved instance state
+     * Initializes archived activity  and sets up listeners.
+     * @param s the saved instance state.
      */
     @Override public void onCreate(Bundle s) {
         super.onCreate(s);
@@ -41,6 +41,9 @@ public final class ArchiveActivity extends AppCompatActivity {
         reload();
     }
 
+    /**
+     * Reloads the archived orders list.
+     */
     private void reload() {
         var h = OrderRepository.get().history();
         sel.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, h.stream().map(o -> "Order #"+o.getNumber()).toList()));
@@ -48,6 +51,9 @@ public final class ArchiveActivity extends AppCompatActivity {
         display();
     }
 
+    /**
+     * Displays the selected archived order items.
+     */
     private void display() {
         int idx = sel.getSelectedItemPosition();
         if (idx < 0) return;
@@ -56,6 +62,9 @@ public final class ArchiveActivity extends AppCompatActivity {
         tot.setText(String.format("$%.2f", o.getTotal()));
     }
 
+    /**
+     * Deletes the selected archived order.
+     */
     private void cancel() {
         int i = sel.getSelectedItemPosition();
         if (i >= 0) {
@@ -64,8 +73,23 @@ public final class ArchiveActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Listener for when a different archived order is selected.
+     */
     private final class Sel implements AdapterView.OnItemSelectedListener {
+        /**
+         * Called when nothing is selected.
+         * @param p the AdapterView.
+         */
         public void onNothingSelected(AdapterView<?> p) {}
+
+        /**
+         * Called when an archived order is selected.
+         * @param a the AdapterView.
+         * @param v the View that is clicked.
+         * @param i the position of the view.
+         * @param id the id of the item that is selected.
+         */
         public void onItemSelected(AdapterView<?> a, View v, int i, long id) { display(); }
     }
 }

@@ -24,12 +24,15 @@ import com.example.p5_213.data.OrderRepository;
 import com.example.p5_213.model.*;
 
 public final class BeverageActivity extends AppCompatActivity {
-
     private RecyclerView rvFlavor;
     private Spinner spSize, spQty;
     private TextView tvPrice;
     private FlavorAdapter adapter;
 
+    /**
+     * Initialize beverage activity and set up listeners.
+     * @param s the saved instance state .
+     */
     @Override protected void onCreate(Bundle s){
         super.onCreate(s);
         setContentView(R.layout.activity_beverage);
@@ -56,6 +59,9 @@ public final class BeverageActivity extends AppCompatActivity {
         updatePrice();
     }
 
+    /**
+     * Adds the beverage to the cart.
+     */
     private void addToOrder(){
         try{
             OrderRepository.get().current().addItem(buildBeverage());
@@ -63,11 +69,18 @@ public final class BeverageActivity extends AppCompatActivity {
         }catch (IllegalStateException ex){ warn("Pick flavor / size."); }
     }
 
+    /**
+     * Updates the displayed price based on size and quantity.
+     */
     private void updatePrice(){
         try{ tvPrice.setText(String.format("$%.2f", buildBeverage().price())); }
         catch (Exception ignore){ tvPrice.setText("$0.00"); }
     }
 
+    /**
+     * Builds a Beverage object based on the selection.
+     * @return the Beverage object with selected size, flavor, and quantity.
+     */
     private Beverage buildBeverage(){
         Flavor flavor = adapter.selected();
         Size size  = (Size) spSize.getSelectedItem();
@@ -76,10 +89,29 @@ public final class BeverageActivity extends AppCompatActivity {
         return new Beverage(size, flavor, qty);
     }
 
+    /**
+     * Shows warning message.
+     * @param m the message.
+     */
     private void warn(String m){ new AlertDialog.Builder(this).setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
+    /**
+     * Listener for item selected actions for spinners.
+     */
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
+        /**
+         * Called when nothing is selected.
+         * @param p the AdapterView.
+         */
         public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
+
+        /**
+         * Called when an item is selected.
+         * @param p the AdapterView.
+         * @param v the view that is clicked.
+         * @param i the position of the selected item.
+         * @param l the id of the selected item.
+         */
         public final void onItemSelected(AdapterView<?> p, android.view.View v,int i,long l){onItemSelected();}
     }
 }
