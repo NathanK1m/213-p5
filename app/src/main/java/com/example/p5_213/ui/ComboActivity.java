@@ -13,14 +13,22 @@ package com.example.p5_213.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.p5_213.R;
 import com.example.p5_213.data.OrderRepository;
-import com.example.p5_213.model.*;
-
+import com.example.p5_213.model.Beverage;
+import com.example.p5_213.model.Combo;
+import com.example.p5_213.model.MenuItem;
+import com.example.p5_213.model.Side;
+import com.example.p5_213.model.SideType;
+import com.example.p5_213.model.Size;
 public final class ComboActivity extends AppCompatActivity {
 
     private static final String EXTRA = "BASE"; //Passes base MenuItem object between activities.

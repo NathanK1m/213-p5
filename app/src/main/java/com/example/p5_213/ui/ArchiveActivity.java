@@ -9,13 +9,16 @@ package com.example.p5_213.ui;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.p5_213.R;
 import com.example.p5_213.data.OrderRepository;
 import com.example.p5_213.model.MenuItem;
 import com.example.p5_213.model.Order;
-
 public final class ArchiveActivity extends AppCompatActivity {
 
     private Spinner sel;

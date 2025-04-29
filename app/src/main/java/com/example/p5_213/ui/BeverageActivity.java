@@ -14,15 +14,20 @@ package com.example.p5_213.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.p5_213.R;
 import com.example.p5_213.data.OrderRepository;
-import com.example.p5_213.model.*;
-
+import com.example.p5_213.model.Beverage;
+import com.example.p5_213.model.Flavor;
+import com.example.p5_213.model.Size;
 public final class BeverageActivity extends AppCompatActivity {
     private RecyclerView rvFlavor;
     private Spinner spSize, spQty;
