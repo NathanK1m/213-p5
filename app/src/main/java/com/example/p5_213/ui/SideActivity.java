@@ -21,9 +21,18 @@ import com.example.p5_213.model.*;
 
 public final class SideActivity extends AppCompatActivity {
 
+    /**
+     * SideActivity class manages the UI and logic for customizing and ordering a side item.
+     */
     private Spinner spType, spSize, spQty;
     private TextView tvPrice;
 
+    /**
+     * Called when the activity is starting.
+     * Sets up the side selection screen with spinners and event listeners.
+     *
+     * @param s savedInstanceState if re-creating the activity from a previous state.
+     */
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_side);
@@ -47,6 +56,10 @@ public final class SideActivity extends AppCompatActivity {
         updatePrice();
     }
 
+    /**
+     * Adds the currently selected Side item to the current order.
+     * Displays a warning if any required selections are missing.
+     */
     private void addToOrder() {
         try {
             OrderRepository.get().current().addItem(buildSide());
@@ -56,11 +69,21 @@ public final class SideActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Updates the displayed price based on the current selections.
+     * Displays $0.00 if selections are incomplete.
+     */
     private void updatePrice() {
         try { tvPrice.setText(String.format("$%.2f", buildSide().price())); }
         catch (Exception ignore){ tvPrice.setText("$0.00"); }
     }
 
+    /**
+     * Constructs and returns a Side object based on user selections.
+     *
+     * @return a fully configured Side
+     * @throws IllegalStateException if required selections are missing
+     */
     private Side buildSide() {
         SideType type = (SideType) spType.getSelectedItem();
         Size size = (Size)spSize.getSelectedItem();
@@ -69,8 +92,16 @@ public final class SideActivity extends AppCompatActivity {
         return new Side(type, size, qty);
     }
 
+    /**
+     * Displays a simple alert dialog with a warning message.
+     *
+     * @param m the message to display
+     */
     private void warn(String m){ new AlertDialog.Builder(this).setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
+    /**
+     * SimpleSel is a helper abstract class for simplified OnItemSelectedListener.
+     */
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
         public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
         public final void onItemSelected(AdapterView<?> p, View v, int i, long l){onItemSelected();}
