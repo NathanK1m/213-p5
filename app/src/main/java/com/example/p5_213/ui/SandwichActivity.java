@@ -15,12 +15,22 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.p5_213.R;
 import com.example.p5_213.data.OrderRepository;
-import com.example.p5_213.model.*;
-
+import com.example.p5_213.model.AddOns;
+import com.example.p5_213.model.Bread;
+import com.example.p5_213.model.Protein;
+import com.example.p5_213.model.Sandwich;
 import java.util.ArrayList;
 
 /**

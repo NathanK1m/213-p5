@@ -10,12 +10,15 @@
  */
 package com.example.p5_213.ui;
 
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.p5_213.model.*;
-import java.util.function.Consumer;
 import com.example.p5_213.R;
+import com.example.p5_213.model.Flavor;
+import java.util.function.Consumer;
 
 /**
  * FlavorAdapter binds a list of Flavors to a RecyclerView for user selection.
