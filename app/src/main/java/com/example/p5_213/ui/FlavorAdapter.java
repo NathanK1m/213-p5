@@ -44,12 +44,12 @@ public final class FlavorAdapter extends RecyclerView.Adapter<FlavorAdapter.Hold
      */
     static final class Holder extends RecyclerView.ViewHolder {
         ImageView img;
-        RadioButton radio;  // ✨ NOW using RadioButton
+        RadioButton radio;
 
         Holder(View v) {
             super(v);
             img = v.findViewById(R.id.cellImg);
-            radio = v.findViewById(R.id.radioButton); // ✨ Updated to match your XML id
+            radio = v.findViewById(R.id.radioButton);
         }
     }
 
@@ -74,15 +74,13 @@ public final class FlavorAdapter extends RecyclerView.Adapter<FlavorAdapter.Hold
     @Override
     public void onBindViewHolder(Holder h, int i) {
         Flavor f = data[i];
-        h.radio.setText(f.name()); // ✨ Set text on the RadioButton
+        h.radio.setText(f.name());
 
-        int id = h.itemView.getContext().getResources().getIdentifier(
-                f.name().toLowerCase(), "drawable", h.itemView.getContext().getPackageName());
+        int id = h.itemView.getContext().getResources().getIdentifier(f.name().toLowerCase(), "drawable", h.itemView.getContext().getPackageName());
         h.img.setImageResource(id);
 
-        h.radio.setChecked(f == sel); // ✨ Correctly show selected item
+        h.radio.setChecked(f == sel);
 
-        // Click handlers
         h.itemView.setOnClickListener(v -> {
             sel = f;
             notifyDataSetChanged();

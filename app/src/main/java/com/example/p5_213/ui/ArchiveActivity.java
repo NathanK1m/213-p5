@@ -26,7 +26,7 @@ public final class ArchiveActivity extends AppCompatActivity {
     private TextView tot;
 
     /**
-     * Initializes archived activity  and sets up listeners.
+     * Initializes archived activity and sets up listeners.
      * @param s the saved instance state.
      */
     @Override public void onCreate(Bundle s) {

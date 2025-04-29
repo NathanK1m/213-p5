@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -118,10 +117,8 @@ public final class SandwichActivity extends AppCompatActivity {
         int proteinId = rgProtein.getCheckedRadioButtonId();
         if(breadId==-1 || proteinId==-1) throw new IllegalStateException();
 
-        Bread bread = Bread.valueOf(((RadioButton)findViewById(breadId))
-                .getText().toString().toUpperCase());
-        Protein protein = switch(((RadioButton)findViewById(proteinId))
-                .getText().toString()){
+        Bread bread = Bread.valueOf(((RadioButton)findViewById(breadId)).getText().toString().toUpperCase());
+        Protein protein = switch(((RadioButton)findViewById(proteinId)).getText().toString()){
             case "Roast Beef" -> Protein.ROAST_BEEF;
             case "Salmon" -> Protein.SALMON;
             default -> Protein.CHICKEN;

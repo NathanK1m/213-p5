@@ -49,7 +49,7 @@ public final class MenuActivity extends AppCompatActivity {
      * Associates a button ID with an intent to start a given activity when clicked.
      *
      * @param id the resource ID of the button to link.
-     * @param c  the target activity class to launch.
+     * @param c the target activity class to launch.
      */
     private void link(int id, Class<?> c){
         findViewById(id).setOnClickListener(v -> startActivity(new Intent(this,c)));

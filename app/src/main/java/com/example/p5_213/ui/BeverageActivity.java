@@ -88,7 +88,7 @@ public final class BeverageActivity extends AppCompatActivity {
      */
     private Beverage buildBeverage(){
         Flavor flavor = adapter.selected();
-        Size size  = (Size) spSize.getSelectedItem();
+        Size size = (Size) spSize.getSelectedItem();
         Integer qty = (Integer)spQty .getSelectedItem();
         if(flavor==null || size==null || qty==null) throw new IllegalStateException();
         return new Beverage(size, flavor, qty);
