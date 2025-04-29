@@ -29,7 +29,7 @@ public final class BeverageActivity extends AppCompatActivity {
 
         /* RecyclerView: 3-column grid with pictures */
         adapter = new FlavorAdapter(f -> updatePrice());
-        rvFlavor.setLayoutManager(new GridLayoutManager(this,3));
+        rvFlavor.setLayoutManager(new GridLayoutManager(this,1));
         rvFlavor.setAdapter(adapter);
 
         spSize.setAdapter(new ArrayAdapter<>(this,
