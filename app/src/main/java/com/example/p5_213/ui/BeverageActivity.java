@@ -47,8 +47,6 @@ public final class BeverageActivity extends AppCompatActivity {
         updatePrice();
     }
 
-    /* helpers -------------------------------------------------------------- */
-
     private void addToOrder(){
         try{
             OrderRepository.get().current().addItem(buildBeverage());
