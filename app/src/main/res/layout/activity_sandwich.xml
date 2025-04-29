@@ -140,17 +140,16 @@
                 android:text="Cheese"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/spQty"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="Quantity"
-                android:textSize="24sp" />
-
             <Spinner
                 android:id="@+id/spQty"
                 android:layout_width="match_parent"
                 android:layout_height="75dp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
 
             <TextView
                 android:id="@+id/tvTot"
