@@ -18,12 +18,12 @@ public final class FlavorAdapter extends RecyclerView.Adapter<FlavorAdapter.Hold
 
     static final class Holder extends RecyclerView.ViewHolder {
         ImageView img;
-        Button btn; // ✨ Now using Button instead of TextView
+        Button btn;
 
         Holder(View v) {
             super(v);
             img = v.findViewById(R.id.cellImg);
-            btn = v.findViewById(R.id.button); // ✨ Bind the Button here
+            btn = v.findViewById(R.id.button);
         }
     }
 
@@ -35,7 +35,7 @@ public final class FlavorAdapter extends RecyclerView.Adapter<FlavorAdapter.Hold
     @Override
     public void onBindViewHolder(Holder h, int i) {
         Flavor f = data[i];
-        h.btn.setText(f.name()); // ✨ Set Button text
+        h.btn.setText(f.name());
         int id = h.itemView.getContext().getResources().getIdentifier(
                 "flavor_" + f.name().toLowerCase(), "drawable", h.itemView.getContext().getPackageName());
         h.img.setImageResource(id);

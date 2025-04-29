@@ -53,14 +53,13 @@ public final class SideActivity extends AppCompatActivity {
 
     private Side buildSide() {
         SideType type = (SideType) spType.getSelectedItem();
-        Size     size = (Size)     spSize.getSelectedItem();
-        Integer  qty  = (Integer)  spQty .getSelectedItem();
+        Size size = (Size)spSize.getSelectedItem();
+        Integer qty = (Integer) spQty .getSelectedItem();
         if (type==null || size==null || qty==null) throw new IllegalStateException();
         return new Side(type, size, qty);
     }
 
-    private void warn(String m){ new AlertDialog.Builder(this)
-            .setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
+    private void warn(String m){ new AlertDialog.Builder(this).setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
         public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();

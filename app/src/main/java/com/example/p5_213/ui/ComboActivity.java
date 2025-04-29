@@ -32,12 +32,10 @@ public final class ComboActivity extends AppCompatActivity {
         base = (MenuItem) getIntent().getSerializableExtra(EXTRA);
 
         spnSide = findViewById(R.id.spnSide);
-        spnSide.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, SideType.values()));
+        spnSide.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, SideType.values()));
 
         spnQty = findViewById(R.id.spQty);
-        spnQty.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
+        spnQty.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
 
         tvPrice = findViewById(R.id.tvTot);
 
@@ -53,22 +51,18 @@ public final class ComboActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btnMain).setOnClickListener(v ->
-                startActivity(new Intent(this, MenuActivity.class))
-        );
+        findViewById(R.id.btnMain).setOnClickListener(v -> startActivity(new Intent(this, MenuActivity.class)));
 
         AdapterView.OnItemSelectedListener listener = new Sel();
         spnSide.setOnItemSelectedListener(listener);
         spnQty.setOnItemSelectedListener(listener);
-
         update();
     }
 
-    // Helpers ------------------------------------------------------
 
     private boolean check() {
         if (spnSide.getSelectedItemPosition() < 0 || adapter.selected() == null) {
-            Toast.makeText(this, "Pick side & drink", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Pick side/drink", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

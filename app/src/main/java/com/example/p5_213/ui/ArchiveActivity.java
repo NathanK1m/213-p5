@@ -1,3 +1,7 @@
+/**
+ * Android activity for 
+ * @author Nathan Kim
+ */
 package com.example.p5_213.ui;
 
 import android.os.Bundle;
@@ -40,7 +44,7 @@ public final class ArchiveActivity extends AppCompatActivity {
     }
 
     private void display() {
-        int idx = sel.getSelectedItemPosition();       // nothing chosen → skip
+        int idx = sel.getSelectedItemPosition();
         if (idx < 0) return;
         Order o = OrderRepository.get().history().get(idx);
         lv.setAdapter(new ArrayAdapter<>(this,

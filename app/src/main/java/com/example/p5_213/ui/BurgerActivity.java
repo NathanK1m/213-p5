@@ -13,9 +13,14 @@ import java.util.ArrayList;
 
 public final class BurgerActivity extends AppCompatActivity {
 
-    private RadioGroup rgBread, rgPatty;
+    private RadioGroup rgBread;
+    private RadioGroup rgPatty;
     private Spinner spQty;
-    private CheckBox cbLet, cbTom, cbOni, cbAvo, cbChe;
+    private CheckBox cbLet;
+    private CheckBox cbTom;
+    private CheckBox cbOni;
+    private CheckBox cbAvo;
+    private CheckBox cbChe;
     private TextView tvPrice;
 
     @Override protected void onCreate(Bundle s) {
@@ -24,7 +29,7 @@ public final class BurgerActivity extends AppCompatActivity {
 
         rgBread = findViewById(R.id.rgBread);
         rgPatty = findViewById(R.id.rgPatty);
-        spQty   = findViewById(R.id.spQty);
+        spQty = findViewById(R.id.spQty);
 
         cbLet = findViewById(R.id.cbLettuce);
         cbTom = findViewById(R.id.cbTomato);
@@ -33,8 +38,7 @@ public final class BurgerActivity extends AppCompatActivity {
         cbChe = findViewById(R.id.cbCheese);
         tvPrice = findViewById(R.id.tvTot);
 
-        spQty.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
+        spQty.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
 
         View.OnClickListener u = v -> updatePrice();
         cbLet.setOnClickListener(u); cbTom.setOnClickListener(u); cbOni.setOnClickListener(u);
@@ -73,10 +77,8 @@ public final class BurgerActivity extends AppCompatActivity {
         int pattyId = rgPatty.getCheckedRadioButtonId();
         if (breadId == -1 || pattyId == -1) throw new IllegalStateException();
 
-        Bread bread = Bread.valueOf(((RadioButton)findViewById(breadId))
-                .getText().toString().toUpperCase());
-        boolean dbl = ((RadioButton)findViewById(pattyId))
-                .getText().toString().equalsIgnoreCase("Double");
+        Bread bread = Bread.valueOf(((RadioButton)findViewById(breadId)).getText().toString().toUpperCase());
+        boolean dbl = ((RadioButton)findViewById(pattyId)).getText().toString().equalsIgnoreCase("Double");
 
         ArrayList<AddOns> add = new ArrayList<>();
         if (cbLet.isChecked()) add.add(AddOns.LETTUCE);
@@ -89,8 +91,7 @@ public final class BurgerActivity extends AppCompatActivity {
         return new Burger(bread, dbl, add, q);
     }
 
-    private void warn(String m){ new AlertDialog.Builder(this)
-            .setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
+    private void warn(String m){ new AlertDialog.Builder(this).setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
         public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
