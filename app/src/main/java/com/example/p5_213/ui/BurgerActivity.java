@@ -14,42 +14,36 @@ import java.util.ArrayList;
 public final class BurgerActivity extends AppCompatActivity {
 
     private RadioGroup rgBread, rgPatty;
-    private Spinner    spQty;
-    private CheckBox   cbLet, cbTom, cbOni, cbAvo, cbChe;
-    private TextView   tvPrice;
+    private Spinner spQty;
+    private CheckBox cbLet, cbTom, cbOni, cbAvo, cbChe;
+    private TextView tvPrice;
 
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_burger);
 
-        /* radio-groups (3 breads, 2 patties) */
-        rgBread = findViewById(R.id.rgBread);   // Brioche / Wheat / Pretzel
-        rgPatty = findViewById(R.id.rgPatty);   // Single / Double
-
+        rgBread = findViewById(R.id.rgBread);
+        rgPatty = findViewById(R.id.rgPatty);
         spQty   = findViewById(R.id.spQty);
 
-        cbLet   = findViewById(R.id.cbLettuce);
-        cbTom   = findViewById(R.id.cbTomato);
+        cbLet = findViewById(R.id.cbLettuce);
+        cbTom = findViewById(R.id.cbTomato);
         cbOni = findViewById(R.id.cbOnion);
-        cbAvo   = findViewById(R.id.cbAvocado);
-        cbChe   = findViewById(R.id.cbCheese);
+        cbAvo = findViewById(R.id.cbAvocado);
+        cbChe = findViewById(R.id.cbCheese);
         tvPrice = findViewById(R.id.tvTot);
 
-        /* quantity 1-5 */
         spQty.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
-                new Integer[]{1,2,3,4,5}));
+                android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
 
-        /* live-price listeners */
         View.OnClickListener u = v -> updatePrice();
-        cbLet.setOnClickListener(u);  cbTom.setOnClickListener(u);  cbOni.setOnClickListener(u);
-        cbAvo.setOnClickListener(u);  cbChe.setOnClickListener(u);
+        cbLet.setOnClickListener(u); cbTom.setOnClickListener(u); cbOni.setOnClickListener(u);
+        cbAvo.setOnClickListener(u); cbChe.setOnClickListener(u);
 
         rgBread.setOnCheckedChangeListener((g,i)->updatePrice());
         rgPatty.setOnCheckedChangeListener((g,i)->updatePrice());
-        spQty  .setOnItemSelectedListener(new SimpleSel(){ public void onItemSelected(){updatePrice();}});
+        spQty.setOnItemSelectedListener(new SimpleSel(){ public void onItemSelected(){ updatePrice(); }});
 
-        /* buttons */
         findViewById(R.id.btnPlace).setOnClickListener(v -> addToCart());
         findViewById(R.id.btnCombo).setOnClickListener(v -> {
             try { startActivity(ComboActivity.intent(this, buildBurger())); }
@@ -59,8 +53,6 @@ public final class BurgerActivity extends AppCompatActivity {
 
         updatePrice();
     }
-
-    /* price / build helpers ------------------------------------------------ */
 
     private void addToCart() {
         try {
@@ -87,11 +79,11 @@ public final class BurgerActivity extends AppCompatActivity {
                 .getText().toString().equalsIgnoreCase("Double");
 
         ArrayList<AddOns> add = new ArrayList<>();
-        if (cbLet.isChecked())   add.add(AddOns.LETTUCE);
-        if (cbTom.isChecked())   add.add(AddOns.TOMATOES);
+        if (cbLet.isChecked()) add.add(AddOns.LETTUCE);
+        if (cbTom.isChecked()) add.add(AddOns.TOMATOES);
         if (cbOni.isChecked()) add.add(AddOns.ONIONS);
-        if (cbAvo.isChecked())   add.add(AddOns.AVOCADO);
-        if (cbChe.isChecked())   add.add(AddOns.CHEESE);
+        if (cbAvo.isChecked()) add.add(AddOns.AVOCADO);
+        if (cbChe.isChecked()) add.add(AddOns.CHEESE);
 
         int q = Integer.parseInt(spQty.getSelectedItem().toString());
         return new Burger(bread, dbl, add, q);
@@ -100,7 +92,6 @@ public final class BurgerActivity extends AppCompatActivity {
     private void warn(String m){ new AlertDialog.Builder(this)
             .setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
-    /* tiny listener helper */
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
         public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
         public final void onItemSelected(AdapterView<?> p, View v, int i, long l){ onItemSelected(); }

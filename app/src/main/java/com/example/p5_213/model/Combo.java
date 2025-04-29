@@ -4,8 +4,10 @@
  */
 package com.example.p5_213.model;
 
-public class Combo extends MenuItem {
-    private Sandwich sandwich;
+import java.io.Serializable;
+
+public class Combo extends MenuItem implements Serializable {
+    private MenuItem sandwich;
     private Beverage drink;
     private Side side;
 
@@ -16,7 +18,7 @@ public class Combo extends MenuItem {
      * @param side the Side item to include in the combo.
      * @param quantity the number of combos.
      */
-    public Combo(Sandwich sandwich, Beverage drink, Side side, int quantity) {
+    public Combo(MenuItem sandwich, Beverage drink, Side side, int quantity) {
         super(quantity);
         this.sandwich = sandwich;
         this.drink = drink;
@@ -37,6 +39,7 @@ public class Combo extends MenuItem {
      * Returns the combo object in a String form with quantity, sandwich type, drink flavor, side type, and price.
      * @return the combo object in a String form.
      */
+    @Override
     public String toString() {
         return "Combo [" + quantity + "] " + sandwich.toString() + " [" + drink.getFlavor() + ", " + side.getType() + "] [$" + String.format("%.2f", price()) + "]";
     }
@@ -45,7 +48,7 @@ public class Combo extends MenuItem {
      * Getter for Sandwich in the combo.
      * @return the sandwich menu item.
      */
-    public Sandwich getSandwich() {
+    public MenuItem getSandwich() {
         return sandwich;
     }
 

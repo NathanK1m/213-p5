@@ -7,7 +7,9 @@
 
 package com.example.p5_213.model;
 
-public abstract class MenuItem {
+import java.io.Serializable;
+
+public abstract class MenuItem implements Serializable {
     protected int quantity;
     public abstract double price();
 

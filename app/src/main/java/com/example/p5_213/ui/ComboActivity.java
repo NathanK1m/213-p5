@@ -15,11 +15,11 @@ public final class ComboActivity extends AppCompatActivity {
 
     private static final String EXTRA = "BASE";
 
-    public static Intent intent(Context c, Sandwich base) {
+    public static Intent intent(Context c, MenuItem base) {
         return new Intent(c, ComboActivity.class).putExtra(EXTRA, base);
     }
 
-    private Sandwich base;
+    private MenuItem base;
     private Spinner spnSide, spnQty;
     private TextView tvPrice;
     private FlavorAdapter adapter;
@@ -29,28 +29,23 @@ public final class ComboActivity extends AppCompatActivity {
         super.onCreate(s);
         setContentView(R.layout.activity_combo);
 
-        base = (Sandwich) getIntent().getSerializableExtra(EXTRA);
+        base = (MenuItem) getIntent().getSerializableExtra(EXTRA);
 
-        // Setup Side Spinner
         spnSide = findViewById(R.id.spnSide);
         spnSide.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, SideType.values()));
 
-        // Setup Quantity Spinner
         spnQty = findViewById(R.id.spQty);
         spnQty.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, new Integer[]{1, 2, 3, 4, 5}));
+                android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
 
-        // Setup Price TextView
         tvPrice = findViewById(R.id.tvTot);
 
-        // Setup RecyclerView for selecting Drink (Flavor)
         RecyclerView rvFlavor = findViewById(R.id.rvFlavor);
-        adapter = new FlavorAdapter(f -> update()); // callback to update price when drink selected
+        adapter = new FlavorAdapter(f -> update());
         rvFlavor.setLayoutManager(new GridLayoutManager(this, 3));
         rvFlavor.setAdapter(adapter);
 
-        // Setup Buttons
         findViewById(R.id.btnPlace).setOnClickListener(v -> {
             if (check()) {
                 OrderRepository.get().current().addItem(build());
@@ -60,7 +55,6 @@ public final class ComboActivity extends AppCompatActivity {
 
         findViewById(R.id.btnMain).setOnClickListener(v -> finish());
 
-        // Setup selection listeners to update price when side or qty changes
         AdapterView.OnItemSelectedListener listener = new Sel();
         spnSide.setOnItemSelectedListener(listener);
         spnQty.setOnItemSelectedListener(listener);
@@ -68,7 +62,7 @@ public final class ComboActivity extends AppCompatActivity {
         update();
     }
 
-    // Helper methods -----------------------------------------------------------------
+    // Helpers ------------------------------------------------------
 
     private boolean check() {
         if (spnSide.getSelectedItemPosition() < 0 || adapter.selected() == null) {
@@ -94,7 +88,7 @@ public final class ComboActivity extends AppCompatActivity {
     }
 
     private final class Sel implements AdapterView.OnItemSelectedListener {
-        public void onNothingSelected(AdapterView<?> p) { }
+        public void onNothingSelected(AdapterView<?> p) {}
         public void onItemSelected(AdapterView<?> p, android.view.View v, int i, long l) { update(); }
     }
 }
