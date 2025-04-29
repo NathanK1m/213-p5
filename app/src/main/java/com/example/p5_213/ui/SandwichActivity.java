@@ -1,3 +1,14 @@
+/**
+ * Handles the Sandwich scene.
+ * Allows users to choose the bread type, protein, quantity, and optional addons.
+ * Allows users to add the sandwich to the current order.
+ * Allows users to make the sandwich into a combo.
+ * ComboBoxes for selecting bread type, protein, quantity, and optional addons.
+ * TextField for showing computed price.
+ * Button actions for adding to order and returning to the main menu scene.
+ * @author Ryan Bae
+ */
+
 package com.example.p5_213.ui;
 
 import android.app.AlertDialog;

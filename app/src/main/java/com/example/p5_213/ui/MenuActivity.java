@@ -1,3 +1,9 @@
+/**
+ * Handles the main menu scene.
+ * Handles navigation between different burger, sandwich, beverage, side, checkout, and orders placed scenes.
+ * @author Nathan Kim
+ */
+
 package com.example.p5_213.ui;
 import android.content.Intent; import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;

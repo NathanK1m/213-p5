@@ -1,5 +1,8 @@
 /**
- * Android activity for 
+ * Handles the orders placed scene
+ * ComboBox to view previously placed orders.
+ * Displays the details of a selected order in a ListView.
+ * Delete a selected order.
  * @author Nathan Kim
  */
 package com.example.p5_213.ui;
@@ -19,6 +22,10 @@ public final class ArchiveActivity extends AppCompatActivity {
     private ListView  lv;
     private TextView  tot;
 
+    /**
+     * Initializes archived activity  and sets up listeners
+     * @param s
+     */
     @Override public void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_archive);

@@ -1,3 +1,13 @@
+/**
+ * Handles the combo scene.
+ * Allows the user to combine a sandwich or burger with a medium drink and a small apple or chips into a single combo item.
+ * A text field showing the base sandwich/burger information
+ * Combo boxes to select a side and drink
+ * Drop down menu for quantity
+ * Image previews for selected side and drink
+ * Beverages uses Recycler View
+ * @author Ryan Bae
+ */
 package com.example.p5_213.ui;
 
 import android.content.Context;

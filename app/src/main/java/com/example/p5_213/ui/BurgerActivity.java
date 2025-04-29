@@ -1,3 +1,14 @@
+/**
+ * Handles the Burger scene.
+ * Allows users to choose the bread type, patty, quantity, and optional addons.
+ * Allows users to add the burger to the current order.
+ * Allows users to make the burger into a combo.
+ * ComboBoxes for selecting bread type, patty, quantity, and optional addons.
+ * TextField for showing computed price.
+ * Button actions for adding to order and returning to the main menu scene.
+ * @author Nathan Kim
+ */
+
 package com.example.p5_213.ui;
 
 import android.app.AlertDialog;

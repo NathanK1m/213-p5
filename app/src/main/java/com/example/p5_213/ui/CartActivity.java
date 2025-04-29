@@ -1,4 +1,14 @@
 package com.example.p5_213.ui;
+/**
+ * Handles the checkout scene.
+ * Displays the user's current order.
+ * Allows removal of items.
+ * Handles placing the final order.
+ * ListView to show all menu items currently in the cart.
+ * TextFields showing subtotal, tax, and total cost.
+ * Buttons to remove items, place the order, or return to the main menu.
+ * @author Nathan Kim
+ */
 
 import android.app.AlertDialog;
 import android.content.Intent;

@@ -1,3 +1,15 @@
+/**
+ * Handles the Beverage Scene.
+ * Allows users to choose the beverage type, size, and quantity.
+ * Using Recycler View to go through beverages.
+ * Allows users to add the beverage to the current order.
+ * ComboBoxes for selecting flavor, size, and quantity.
+ * TextField for showing computed price.
+ * Button actions for adding to order and returning to the main menu scene.
+ * @author Ryan Bae
+ */
+
+
 package com.example.p5_213.ui;
 
 import android.content.Intent;
@@ -14,8 +26,8 @@ import com.example.p5_213.model.*;
 public final class BeverageActivity extends AppCompatActivity {
 
     private RecyclerView rvFlavor;
-    private Spinner      spSize, spQty;
-    private TextView     tvPrice;
+    private Spinner spSize, spQty;
+    private TextView tvPrice;
     private FlavorAdapter adapter;
 
     @Override protected void onCreate(Bundle s){
@@ -23,26 +35,23 @@ public final class BeverageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_beverage);
 
         rvFlavor = findViewById(R.id.rvFlavor);
-        spSize   = findViewById(R.id.spSize);
-        spQty    = findViewById(R.id.spQty);
-        tvPrice  = findViewById(R.id.tvTot);
+        spSize = findViewById(R.id.spSize);
+        spQty = findViewById(R.id.spQty);
+        tvPrice = findViewById(R.id.tvTot);
 
         /* RecyclerView: 3-column grid with pictures */
         adapter = new FlavorAdapter(f -> updatePrice());
         rvFlavor.setLayoutManager(new GridLayoutManager(this,1));
         rvFlavor.setAdapter(adapter);
 
-        spSize.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, Size.values()));
-        spQty.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
+        spSize.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Size.values()));
+        spQty.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
 
         AdapterView.OnItemSelectedListener l = new SimpleSel(){public void onItemSelected(){updatePrice();}};
         spSize.setOnItemSelectedListener(l); spQty.setOnItemSelectedListener(l);
 
         findViewById(R.id.btnPlace).setOnClickListener(v -> addToOrder());
-        findViewById(R.id.btnMain).setOnClickListener(
-                v -> startActivity(new Intent(this, MenuActivity.class)));
+        findViewById(R.id.btnMain).setOnClickListener(v -> startActivity(new Intent(this, MenuActivity.class)));
 
         updatePrice();
     }
@@ -60,15 +69,14 @@ public final class BeverageActivity extends AppCompatActivity {
     }
 
     private Beverage buildBeverage(){
-        Flavor  flavor = adapter.selected();
-        Size    size   = (Size)   spSize.getSelectedItem();
-        Integer qty    = (Integer)spQty .getSelectedItem();
+        Flavor flavor = adapter.selected();
+        Size size  = (Size) spSize.getSelectedItem();
+        Integer qty = (Integer)spQty .getSelectedItem();
         if(flavor==null || size==null || qty==null) throw new IllegalStateException();
         return new Beverage(size, flavor, qty);
     }
 
-    private void warn(String m){ new AlertDialog.Builder(this)
-            .setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
+    private void warn(String m){ new AlertDialog.Builder(this).setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
         public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
