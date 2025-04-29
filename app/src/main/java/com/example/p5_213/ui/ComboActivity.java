@@ -60,7 +60,8 @@ public final class ComboActivity extends AppCompatActivity {
         base = (MenuItem) getIntent().getSerializableExtra(EXTRA);
 
         spnSide = findViewById(R.id.spnSide);
-        spnSide.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, SideType.values()));
+        SideType[] comboSides = new SideType[]{SideType.CHIPS, SideType.APPLE_SLICES};
+        spnSide.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, comboSides));
 
         spnQty = findViewById(R.id.spQty);
         spnQty.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new Integer[]{1,2,3,4,5}));
@@ -104,7 +105,7 @@ public final class ComboActivity extends AppCompatActivity {
      * @return new Combo object with selected side, drink, and quantity.
      */
     private Combo build() {
-        Side side = new Side(SideType.values()[spnSide.getSelectedItemPosition()], Size.SMALL, 1);
+        Side side = new Side((SideType) spnSide.getSelectedItem(), Size.SMALL, 1);
         Beverage drink = new Beverage(Size.MEDIUM, adapter.selected(), 1);
         int quantity = (Integer) spnQty.getSelectedItem();
         return new Combo(base, drink, side, quantity);
