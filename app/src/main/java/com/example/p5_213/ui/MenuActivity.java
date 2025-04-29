@@ -5,7 +5,7 @@ import com.example.p5_213.R;
 
 public final class MenuActivity extends AppCompatActivity {
     public void onCreate(Bundle s){ super.onCreate(s);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.menu_page);
         link(R.id.btnBurger,   BurgerActivity.class);
         link(R.id.btnSandwich, SandwichActivity.class);
         link(R.id.btnSide,     SideActivity.class);
