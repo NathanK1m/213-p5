@@ -53,7 +53,9 @@ public final class ComboActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btnMain).setOnClickListener(v -> finish());
+        findViewById(R.id.btnMain).setOnClickListener(v ->
+                startActivity(new Intent(this, MenuActivity.class))
+        );
 
         AdapterView.OnItemSelectedListener listener = new Sel();
         spnSide.setOnItemSelectedListener(listener);
