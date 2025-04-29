@@ -1,3 +1,13 @@
+/**
+ * Handles the Side Scene.
+ * Allows users to choose the side type, size, and quantity.
+ * Allows users to add the side to the current order.
+ * ComboBoxes for selecting side type, size, and quantity.
+ * TextField for showing computed price.
+ * Button actions for adding to order and returning to the main menu scene.
+ * @author Nathan Kim
+ */
+
 package com.example.p5_213.ui;
 
 import android.app.AlertDialog;

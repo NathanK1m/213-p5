@@ -1,3 +1,15 @@
+/**
+ * Handles the Beverage Scene.
+ * Allows users to choose the beverage type, size, and quantity.
+ * Using Recycler View to go through beverages.
+ * Allows users to add the beverage to the current order.
+ * ComboBoxes for selecting flavor, size, and quantity.
+ * TextField for showing computed price.
+ * Button actions for adding to order and returning to the main menu scene.
+ * @author Ryan Bae
+ */
+
+
 package com.example.p5_213.ui;
 
 import android.content.Intent;
