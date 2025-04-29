@@ -18,20 +18,20 @@ import com.example.p5_213.model.Order;
 
 public final class ArchiveActivity extends AppCompatActivity {
 
-    private Spinner   sel;
-    private ListView  lv;
-    private TextView  tot;
+    private Spinner sel;
+    private ListView lv;
+    private TextView tot;
 
     /**
      * Initializes archived activity  and sets up listeners
-     * @param s
+     * @param s the saved instance state
      */
     @Override public void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_archive);
 
         sel = findViewById(R.id.spnOrders);
-        lv  = findViewById(R.id.lvDetails);
+        lv = findViewById(R.id.lvDetails);
         tot = findViewById(R.id.tvTotal);
 
         sel.setOnItemSelectedListener(new Sel());
@@ -43,9 +43,7 @@ public final class ArchiveActivity extends AppCompatActivity {
 
     private void reload() {
         var h = OrderRepository.get().history();
-        sel.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
-                h.stream().map(o -> "Order #"+o.getNumber()).toList()));
+        sel.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, h.stream().map(o -> "Order #"+o.getNumber()).toList()));
         if (!h.isEmpty()) sel.setSelection(0);
         display();
     }
@@ -54,9 +52,7 @@ public final class ArchiveActivity extends AppCompatActivity {
         int idx = sel.getSelectedItemPosition();
         if (idx < 0) return;
         Order o = OrderRepository.get().history().get(idx);
-        lv.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                o.getItems().stream().map(MenuItem::toString).toList()));
+        lv.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, o.getItems().stream().map(MenuItem::toString).toList()));
         tot.setText(String.format("$%.2f", o.getTotal()));
     }
 
