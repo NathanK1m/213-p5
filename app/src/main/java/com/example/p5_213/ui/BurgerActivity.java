@@ -34,6 +34,10 @@ public final class BurgerActivity extends AppCompatActivity {
     private CheckBox cbChe;
     private TextView tvPrice;
 
+    /**
+     * Initializes burger activity and sets up listeners.
+     * @param s the saved instance state.
+     */
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_burger);
@@ -69,6 +73,9 @@ public final class BurgerActivity extends AppCompatActivity {
         updatePrice();
     }
 
+    /**
+     * Adds the selected burger to the cart.
+     */
     private void addToCart() {
         try {
             OrderRepository.get().current().addItem(buildBurger());
@@ -78,11 +85,18 @@ public final class BurgerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Updates the displayed total price based on the user's selections.
+     */
     private void updatePrice() {
         try { tvPrice.setText(String.format("$%.2f", buildBurger().price())); }
         catch (Exception ignore) { tvPrice.setText("$0.00"); }
     }
 
+    /**
+     * Builds a Burger object based on user's selections.
+     * @return a new Burger object with selected bread, patty, add-ons, and quantity.
+     */
     private Burger buildBurger() {
         int breadId = rgBread.getCheckedRadioButtonId();
         int pattyId = rgPatty.getCheckedRadioButtonId();
@@ -102,10 +116,29 @@ public final class BurgerActivity extends AppCompatActivity {
         return new Burger(bread, dbl, add, q);
     }
 
+    /**
+     * Shows a warning message.
+     * @param m the message.
+     */
     private void warn(String m){ new AlertDialog.Builder(this).setMessage(m).setPositiveButton(android.R.string.ok,null).show(); }
 
+    /**
+     * Listener for spinner selected actions for spinners.
+     */
     private abstract static class SimpleSel implements AdapterView.OnItemSelectedListener{
+        /**
+         * Called when nothing is selected.
+         * @param p the AdapterView.
+         */
         public void onNothingSelected(AdapterView<?> p){} public abstract void onItemSelected();
+
+        /**
+         * Called when an item is selected.
+         * @param p the AdapterView.
+         * @param v the view in the AdapterView that was clicked.
+         * @param i the position of the selected item.
+         * @param l the id of the selected item.
+         */
         public final void onItemSelected(AdapterView<?> p, View v, int i, long l){ onItemSelected(); }
     }
 }
