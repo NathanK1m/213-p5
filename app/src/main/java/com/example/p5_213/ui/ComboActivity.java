@@ -51,7 +51,7 @@ public final class ComboActivity extends AppCompatActivity {
 
         RecyclerView rvFlavor = findViewById(R.id.rvFlavor);
         adapter = new FlavorAdapter(f -> update());
-        rvFlavor.setLayoutManager(new GridLayoutManager(this, 3));
+        rvFlavor.setLayoutManager(new GridLayoutManager(this, 1));
         rvFlavor.setAdapter(adapter);
 
         findViewById(R.id.btnPlace).setOnClickListener(v -> {
